@@ -12,10 +12,14 @@ A simple open serverside font format converter... that could do a lot more than 
 - [Goals](#goals)
 
 ## Quick Start
+In one terminal window: 
+```
+node server.js
 ```
 
-code
-
+In another:
+```
+curl -F "file=@./path/to/font/file" http://localhost:3000/files 
 ```
 
 ## Example
