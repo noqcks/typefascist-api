@@ -2,7 +2,7 @@
   "name": "advanced-font-converter",
   "version": "1.0.0",
   "description": "An API to convert fonts",
-  "main": "server.js",
+  "main": "bin/server.js",
   "scripts": {
     "test": "npm test"
   },
