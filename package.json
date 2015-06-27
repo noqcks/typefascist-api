@@ -10,10 +10,16 @@
     "type": "git",
     "url": "https://github.com/quitequinn/Advanced-Font-Converter.git"
   },
-  "authors": ["Quinn Keaveney", "Ben Visser"],
+  "authors": [
+    "Quinn Keaveney",
+    "Ben Visser"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/quitequinn/Advanced-Font-Converter/issues"
   },
-  "homepage": "https://github.com/quitequinn/Advanced-Font-Converter"
+  "homepage": "https://github.com/quitequinn/Advanced-Font-Converter",
+  "dependencies": {
+    "restify": "^3.0.3"
+  }
 }
