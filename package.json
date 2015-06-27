@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/quitequinn/Advanced-Font-Converter",
   "dependencies": {
-    "restify": "^3.0.3"
+    "express": "^4.13.0",
+    "multer": "^0.1.8"
   }
 }
