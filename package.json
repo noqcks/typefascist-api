@@ -1,0 +1,19 @@
+{
+  "name": "advanced-font-converter",
+  "version": "1.0.0",
+  "description": "An API to convert fonts",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quitequinn/Advanced-Font-Converter.git"
+  },
+  "authors": ["Quinn Keaveney", "Ben Visser"],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quitequinn/Advanced-Font-Converter/issues"
+  },
+  "homepage": "https://github.com/quitequinn/Advanced-Font-Converter"
+}
