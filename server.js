@@ -3,12 +3,34 @@
 var express = require('express');
 var multer = require('multer');
 
+
 var newFilePath;
 var oldFilePath;
 var done = false;
 
 var cmd = require('child_process');
 var app = express();
+
+var convert = require('./lib/convert.js');
+
+////////////////////////////////////////////////////////////////////////
+
+// TODO: 
+// 1. allow option for format to convert to
+// req.body.format
+// 2. allow option for format to output file as
+// req.body.output
+// 3. authorize access using the API key from mashape
+// console.log(req.headers['x-mashape-key']);
+// 4. return error for files that arent woff, otf, ttf etc
+
+// extensions to convert from:
+// afm, bin, cff, dfont, eot, otf, pdf, pfa, pfb, pfm, ps, pt3, suit, svg, t11, t42, tfm, ttc, ttf, woff, woff2
+
+// extensions to convert to:
+// afm, bin, cff, dfont, eot, otf, pfa, pfb, pfm, ps, pt3, suit, svg, t11, t42, tfm, ttc, ttf, woff, woff2, ufo
+
+////////////////////////////////////////////////////////////////////////
 
 app.use(multer({ dest: 'uploads',
   rename: function (fieldname, filename) {
@@ -21,6 +43,7 @@ app.use(multer({ dest: 'uploads',
 
   onFileUploadComplete: function (file) {
     console.log(file.fieldname + ' uploaded to  ' + file.path);
+    // conversion(file.extension);
     convert_font(file.path);
   }
 }));
@@ -54,8 +77,22 @@ var server = app.listen(3000, function () {
 ////////////////////////
 // (should probably reference these as modules from another file) // 
 
+// function conversion(format){
+//   switch(format) {
+//     case 'otf':
+//       convert.otf();
+//     case 'ttf':
+//       convert.tff();
+//     case 'woff':
+//       convert.wff();
+//     default: 
+//       console.log('that file format is not supported');
+//   }  
+// }
+
 function convert_font(filePath) {
   // convert the font file to woff
+  // convert.woff(filePath);
   convert_file_sync(filePath);
 
   // give the files an absolute path
