@@ -39,10 +39,17 @@ app.post('/files',function(req, res) {
   convert_to = req.body.format;
 
   if(uploaded === true){
+    if(convert_to === undefined) convert_to = 'woff2';
     var font = convert_from + '_to_' + convert_to;
-    console.log(original_file_path);
-    convert[font](original_file_path);
-    cleanup_files()
+    try {
+      convert[font](original_file_path);
+      cleanup_files()
+    }
+    catch(err) {
+      res.end('That conversion is not supported');
+      name_old_file(original_file_path);
+      remove_file_sync(original_file_path);
+    }
   }
 
   if (done === true) {
