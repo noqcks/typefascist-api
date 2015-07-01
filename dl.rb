@@ -1,15 +1,3 @@
-# require 'net/http'
-
-# Must be somedomain.net instead of somedomain.net/, otherwise, it will throw exception.
-# Net::HTTP.start("somedomain.net") do |http|
-#     resp = http.get("/flv/sample/sample.flv")
-#     open("sample.flv", "wb") do |file|
-#         file.write(resp.body)
-#     end
-# end
-
-# puts "Done."
-
 require 'unirest'
 
 
