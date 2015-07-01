@@ -3,34 +3,20 @@
 var express = require('express');
 var multer = require('multer');
 
-var new_file_path;
-var old_file_path;
-var font_type_not_supported;
+var converted_file_path;
+var original_file_path;
+// var filePath;
+
 var done = false;
+var uploaded = false;
+
+var convert_to = 'woff2';
+var convert_from;
 
 var cmd = require('child_process');
 var app = express();
 
-var convert = require('./lib/convert.js');
-
-////////////////////////////////////////////////////////////////////////
-
-// TODO: 
-// 1. allow option for format to convert to
-// req.body.format
-// 2. allow option for format to output file as
-// req.body.output
-// 3. authorize access using the API key from mashape
-// console.log(req.headers['x-mashape-key']);
-// ---- DONE ----- 4. return error for files that arent woff, otf, ttf etc
-
-// extensions to convert from:
-// afm, bin, cff, dfont, eot, otf, pdf, pfa, pfb, pfm, ps, pt3, suit, svg, t11, t42, tfm, ttc, ttf, woff, woff2
-
-// extensions to convert to:
-// afm, bin, cff, dfont, eot, otf, pfa, pfb, pfm, ps, pt3, suit, svg, t11, t42, tfm, ttc, ttf, woff, woff2, ufo
-
-////////////////////////////////////////////////////////////////////////
+var convert = require('./lib/convert');
 
 app.use(multer({ dest: 'uploads',
   rename: function (fieldname, filename) {
@@ -38,45 +24,44 @@ app.use(multer({ dest: 'uploads',
   },
 
   onFileUploadStart: function (file) {
-    if(!supported_font_type(file.extension)){
-      font_type_not_supported = true;
-    }
     console.log(file.originalname + ' is starting ...');
   },
 
   onFileUploadComplete: function (file) {
     console.log(file.fieldname + ' uploaded to  ' + file.path);
-    // conversion(file.extension);
-    old_file_path = file.path;
+    convert_from = file.extension;
+    original_file_path = file.path;
+    uploaded = true;
   }
 }));
 
-
-app.post('/files',function(req,res) {
-
+app.post('/files',function(req, res) {
   convert_to = req.body.format;
-  convert_font(convert_to);
 
-  if(font_type_not_supported === true){
-    res.end('font type not supported')
+  if(uploaded === true){
+    var font = convert_from + '_to_' + convert_to;
+    console.log(original_file_path);
+    convert[font](original_file_path);
+    cleanup_files()
   }
 
-  if(done === true){
-    console.log(req.files);
-    res.sendFile(new_file_path, function (err) {
+  if (done === true) {
+    res.sendFile(converted_file_path, function (err) {
       if (err) {
         console.log(err);
         res.status(err.status).end();
       }
       else {
-        console.log('Sent:', new_file_path);
+        console.log('Sent:', converted_file_path);
         res.status('200').end();
-        remove_file_sync(new_file_path);
+        // remove the font files
+        remove_file_sync(converted_file_path);
+        name_old_file(original_file_path);
+        remove_file_sync(original_file_path);
       }
     });
   }
 });
-
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
@@ -90,35 +75,33 @@ var server = app.listen(3000, function () {
 ////////////////////////
 // (should probably reference these as modules from another file) // 
 
+function cleanup_files()
+{
+  // give the files absolute paths
+  name_new_file(original_file_path);
 
-function conversion(format_from, format_to, filePath){
-  try {
-    var format = format_from + '_to_' + format_to
-    convert.format(filePath)
-  }
-  catch(err){
-    console.log('That conversion is not supported');
-  }
+  // change permissions on converted file so we can send it in response body
+  chmod_file_sync(converted_file_path);
+  done = true;
 }
 
 
 function name_old_file(file){
-  old_file_path = __dirname + '/' + file;
+  original_file_path = __dirname + '/' + file;
 }
 
 
 function name_new_file(file){
-  new_file_path = __dirname + '/' + file.replace('.otf', '.woff2');
+  converted_file_path = __dirname + '/' + file.replace(convert_from, convert_to);
 }
 
 
-function remove_file_sync(filePath){
-  cmd.spawnSync('rm', ['-rf', filePath]);
+function remove_file_sync(file){
+  cmd.spawnSync('rm', ['-rf', file]);
 }
 
-
-function chmod_file_sync(filePath){
-  require('fs').chmod(filePath, '0777', function(err){
+function chmod_file_sync(file){
+  require('fs').chmod(file, '0777', function(err){
     if(err) return err;
   });
 }
