@@ -5,7 +5,6 @@ var multer = require('multer');
 
 var converted_file_path;
 var original_file_path;
-// var filePath;
 
 var done = false;
 var uploaded = false;
@@ -35,7 +34,7 @@ app.use(multer({ dest: 'uploads',
   }
 }));
 
-app.post('/files',function(req, res) {
+app.post('/',function(req, res) {
   convert_to = req.body.format;
 
   if(uploaded === true){
