@@ -34,7 +34,7 @@ app.use(multer({ dest: 'uploads',
   }
 }));
 
-app.post('/',function(req, res) {
+app.post('/convert',function(req, res) {
   convert_to = req.body.format;
 
   if(uploaded === true){
