@@ -1,6 +1,6 @@
-# [Advanced Type Converter](http://DEFAULT.com/)
+# [Typefascist API](http://typefacscist.com/)
 
-A simple open serverside font format converter... that could do a lot more than convert fonts
+A simple node API for converting fonts
 
 ## Table of contents
 

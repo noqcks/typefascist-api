@@ -2,13 +2,13 @@
   "name": "advanced-font-converter",
   "version": "1.0.0",
   "description": "An API to convert fonts",
-  "main": "bin/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/quitequinn/Advanced-Font-Converter.git"
+    "url": "https://github.com/noqcks/typefacist-api.git"
   },
   "authors": [
     "Quinn Keaveney",
@@ -16,9 +16,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/quitequinn/Advanced-Font-Converter/issues"
+    "url": "https://github.com/noqcks/typefacist-api/issues"
   },
-  "homepage": "https://github.com/quitequinn/Advanced-Font-Converter",
+  "homepage": "https://github.com/noqcks/typefacist-api",
   "dependencies": {
     "express": "^4.13.0",
     "multer": "^0.1.8"
