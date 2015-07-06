@@ -9,6 +9,9 @@ A simple node API for converting fonts
 - [Goals](#goals)
 
 ## Quick Start
+Check the [dependencies](#dependencies)
+
+
 Install all npm packages from package.json
 ```
 npm install
