@@ -5,10 +5,7 @@ A simple node API for converting fonts
 ## Table of contents
 
 - [Quick Start](#quick-start)
-- [Example](#example)
-- [Options](#options)
 - [Dependencies](#dependencies)
-- [Ramp Up](#ramp-up)
 - [Goals](#goals)
 
 ## Quick Start
