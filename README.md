@@ -1,4 +1,4 @@
-# [Typefascist API](http://typefacscist.com/)
+# [Typefascist API](http://typefascist.com/)
 
 A simple node API for converting fonts
 
@@ -12,89 +12,30 @@ A simple node API for converting fonts
 - [Goals](#goals)
 
 ## Quick Start
-In one terminal window: 
+Install all npm packages from package.json
+```
+npm install
+```
+Start the API server using
 ```
 node server.js
 ```
-
-In another:
+Test the functionality using the client exmaple file
 ```
-curl -F "file=@./path/to/font/file" http://localhost:3000/files 
-```
-
-## Example
-
-Simple Example
-```
-
-```
-
-One Feature Example
-```
-
-```
-
-Multiple Feature Example
-```
-
-```
-
-## Options
-
-DEFAULT DEFAULT
-
-W A R N I N G
-The attribute names are case specific.
-
-#### Stuff
-Default
-```
-code
+ruby client_example.rb <fontfile>
 ```
 
 ## Dependencies
 
-A short list of depencencies for the project.
-
-#### Stuff
-Default
+#### Fontforge
+You will need python enabled fontforge
 ```
-code
-```
-
-
-## Ramp Up
-
-Install node if you haven't already
-http://nodejs.org/
-
-```
-# Set current directory
-cd projectDirectory
-
-# install packages
-npm install
+sudo apt-get install fontforge python-fontforge
 ```
 
 ### You're all set!
 
 ## Goals
 
-Convert to relavent formats
-* WOFF2 (http://www.w3.org/TR/WOFF2/)
-* WOFF (http://www.w3.org/TR/WOFF/)
-* OPT (https://www.microsoft.com/typography/otspec/)
-* TTF (http://www.truetype-typography.com/ttspec.htm)
-* UFO (http://unifiedfontobject.org/)
-* SVG (http://www.w3.org/TR/SVG/fonts.html)
-* EOT (http://www.w3.org/Submission/EOT/)
-
-More?
-afm, bin, cff, dfont, pdf, pfa, pfb, pfm, ps, pt3, suit, t11, t42, tfm, ttc
-
-Munge base64 variants of Woff1/2
-
-Subset any filetype
-
-output font data such as supported OPT and Languge features.
-
+Fonts to add in the future:
+ufo, svg, eot, afm, bin, cff, dfont, pdf, pfa, pfb, pfm, ps, pt3, suit, t11, t42, tfm, ttc
