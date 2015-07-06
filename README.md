@@ -32,6 +32,11 @@ You will need python enabled fontforge
 ```
 sudo apt-get install fontforge python-fontforge
 ```
+#### Python3
+If you are rolling an old version of ubuntu without Python3, you will have to install it. 
+```
+sudo apt-get install python3
+```
 
 ### You're all set!
 
